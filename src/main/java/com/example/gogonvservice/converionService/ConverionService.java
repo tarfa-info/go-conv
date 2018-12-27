@@ -1,9 +1,6 @@
 package com.example.gogonvservice.converionService;
 
 import com.example.gogonvservice.conversion.ConvService;
-import com.example.gogonvservice.email.service.EmailService;
-import com.mailjet.client.errors.MailjetException;
-import com.mailjet.client.errors.MailjetSocketTimeoutException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -30,25 +27,27 @@ public class ConverionService  {
 
 
 
-    public Map<String, String> store(MultipartFile file ) throws InterruptedException, ExecutionException, MailjetSocketTimeoutException, MailjetException {
+    public Map<String, String> store(MultipartFile file ) throws InterruptedException, ExecutionException {
         Map<String,String> map=new HashMap<>();
 
         final Future<String>  task;
         try {
-            long number = Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
-            ConvService convService = new ConvService(pathFolderLocator, this.rootLocation.resolve(file.getOriginalFilename()).toString(),file.getOriginalFilename(),".pdf");
-            final ExecutorService service;
+            //long number = Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+            //ConvService convService = new ConvService(pathFolderLocator, this.rootLocation.resolve(file.getOriginalFilename()).toString(),file.getOriginalFilename(),".pdf");
+
+            // upload it to Drop Box
+
+
+
+            ConvService convService = new ConvService(pathFolderLocator,this.rootLocation.resolve(file.getOriginalFilename()).toString(),file.getOriginalFilename(),".pdf");
+
+             final ExecutorService service;
             service = Executors.newFixedThreadPool(1);
             task    = service.submit(convService);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException("FAIL!");
         }
-
-        /**
-         * call E-mail Service
-         */
-        EmailService.sendEmail("ali.tarfa.cs@gmail.com","no");
 
 
         map.put("status",task.get());

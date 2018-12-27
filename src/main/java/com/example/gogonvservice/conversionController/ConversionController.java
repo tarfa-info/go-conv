@@ -2,8 +2,7 @@ package com.example.gogonvservice.conversionController;
 
 import com.example.gogonvservice.converionService.ConverionService;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mailjet.client.errors.MailjetException;
-import com.mailjet.client.errors.MailjetSocketTimeoutException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,7 @@ public class ConversionController   {
     @JsonFormat
     @CrossOrigin("*")
     @PostMapping("/upload")
-    public CompletableFuture<Map<String, String>> startConversion(@RequestParam MultipartFile file) throws InterruptedException, ExecutionException, MailjetSocketTimeoutException, MailjetException {
+    public CompletableFuture<Map<String, String>> startConversion(@RequestParam MultipartFile file) throws InterruptedException, ExecutionException {
          Map<String, String> value =converionService.store(file);
          return CompletableFuture.completedFuture(value);
     }

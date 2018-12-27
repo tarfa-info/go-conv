@@ -36,11 +36,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>com.mailjet</groupId>
 			<artifactId>mailjet-client</artifactId>
 			<version>4.0.5</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 		<groupId>com.convert</groupId>
@@ -49,6 +49,12 @@
 		<scope>system</scope>
 		<systemPath>${basedir}/src/main/resources/lib/jofficeconvert.v2018R1.00.jar</systemPath>
 		</dependency>
+<!--
+		<dependency>
+			<groupId>com.dropbox.core</groupId>
+			<artifactId>dropbox-core-sdk</artifactId>
+			<version>3.0.10</version>
+		</dependency>-->
 	</dependencies>
 
 	<dependencyManagement>
@@ -76,7 +82,7 @@
 	</build>
 
 	<repositories>
-		<repository>
+	<!--	<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
@@ -84,7 +90,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-
+-->
 		<repository>
 			<id>GroupDocsJavaAPI</id>
 			<name>GroupDocs Java API</name>

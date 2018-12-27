@@ -23,8 +23,6 @@ public class ConvService implements Callable<String> {
         this.toType = toType;
     }
 
-
-
     @Override
     public String call() throws Exception {
 
